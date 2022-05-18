@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="priCalculatorApp.MainPage">
+    <Grid BackgroundColor="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" FontSize="20" Text="MyCalculator v1" 
+               BackgroundColor="white" TextColor="DarkGray" HorizontalTextAlignment="Center"/>
+        <Label x:Name="sDisplay" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" FontSize="20" Text="" 
+               TextColor="white" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+        <Label x:Name="mDisplay" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" FontSize="50" Text="0" 
+               TextColor="white" HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+        <Button Text="7" Clicked="btnNum" Grid.Row="3" Grid.Column="0" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
+        <Button Text="8" Clicked="btnNum" Grid.Row="3" Grid.Column="1" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
+        <Button Text="9" Clicked="btnNum" Grid.Row="3" Grid.Column="2" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
+        <Button Text="+" Clicked="btnOpe" Grid.Row="3" Grid.Column="3" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
+        <Button Text="4" Clicked="btnNum" Grid.Row="4" Grid.Column="0" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
+        <Button Text="5" Clicked="btnNum" Grid.Row="4" Grid.Column="1" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
+        <Button Text="6" Clicked="btnNum" Grid.Row="4" Grid.Column="2" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
+        <Button Text="-" Clicked="btnOpe" Grid.Row="4" Grid.Column="3" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
+        <Button Text="1" Clicked="btnNum" Grid.Row="5" Grid.Column="0" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
+        <Button Text="2" Clicked="btnNum" Grid.Row="5" Grid.Column="1" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
+        <Button Text="3" Clicked="btnNum" Grid.Row="5" Grid.Column="2" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
+        <Button Text="X" Clicked="btnOpe" Grid.Row="5" Grid.Column="3" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
+        <Button Text="0" Clicked="btnNum" Grid.Row="6" Grid.Column="0" FontSize="30" BackgroundColor="DarkGray" Padding="3" Grid.ColumnSpan="3"/>
+        <Button Text="/" Clicked="btnOpe" Grid.Row="6" Grid.Column="3" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
+        <Button Text="=" Clicked="btnEqu" Grid.Row="7" Grid.Column="0" FontSize="30" BackgroundColor="DarkGray" Padding="2" Grid.ColumnSpan="3"/>
+        <Button Text="C" Clicked="btnCle" Grid.Row="7" Grid.Column="3" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
+    </Grid>
+</ContentPage>
