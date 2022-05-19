@@ -99,8 +99,8 @@ namespace priCalculatorApp
             }
             allClear();
             v1 = result;
-            if (v1 > Math.Pow(10, 9)) mDisplay.FontSize = 40;
-            else if (v1 > Math.Pow(10, 99)) mDisplay.FontSize = 30;
+            if (Math.Abs(v1) > Math.Pow(10, 8)) mDisplay.FontSize = 40;
+            else if (Math.Abs(v1) > Math.Pow(10, 99)) mDisplay.FontSize = 30;
             mDisplay.Text = $" {v1}";
         }
 
