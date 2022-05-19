@@ -31,9 +31,10 @@
         <Button Text="2" Clicked="btnNum" Grid.Row="5" Grid.Column="1" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
         <Button Text="3" Clicked="btnNum" Grid.Row="5" Grid.Column="2" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
         <Button Text="X" Clicked="btnOpe" Grid.Row="5" Grid.Column="3" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
-        <Button Text="0" Clicked="btnNum" Grid.Row="6" Grid.Column="0" FontSize="30" BackgroundColor="DarkGray" Padding="2" Grid.ColumnSpan="3"/>
+        <Button Text="0" Clicked="btnNum" Grid.Row="6" Grid.Column="0" FontSize="30" BackgroundColor="DarkGray" Padding="2" Grid.ColumnSpan="2"/>
+        <Button Text="←" Clicked="btnBac" Grid.Row="6" Grid.Column="2" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
         <Button Text="/" Clicked="btnOpe" Grid.Row="6" Grid.Column="3" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
-        <Button Text="=" Clicked="btnEqu" Grid.Row="7" Grid.Column="0" FontSize="30" BackgroundColor="DarkGray" Padding="2" Grid.ColumnSpan="3"/>
-        <Button Text="C" Clicked="btnCle" Grid.Row="7" Grid.Column="3" FontSize="30" BackgroundColor="DarkGray" Padding="2"/>
+        <Button Text="=" Clicked="btnEqu" Grid.Row="7" Grid.Column="0" FontSize="30" BackgroundColor="DarkGray" Padding="2" Grid.ColumnSpan="2"/>
+        <Button Text="C" Clicked="btnCle" Grid.Row="7" Grid.Column="2" FontSize="30" BackgroundColor="DarkGray" Padding="2" Grid.ColumnSpan="2"/>
     </Grid>
 </ContentPage>

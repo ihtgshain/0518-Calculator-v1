@@ -14,105 +14,156 @@ namespace priCalculatorApp
         {
             InitializeComponent();
         }
-
-        List<int> list1 = new List<int>();
-        List<int> list2 = new List<int>();
+        string s1 ="0";
+        string s2 = "";
         double v1 = 0;
         double v2 = 0;
         double result = 0;
         bool isOperated = false;
         string ope = "";
-        const int units= 11;
+        const int digits= 11;
 
         public void btnNum(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
-            if (!isOperated)
+            if (!isOperated) 
             {
-                if (list1.Count > units || (list1.Count==0 && btn.Text=="0")) return;
+                if (s1.Length > digits || (s1== "0" && btn.Text=="0")) return;
                 v1 = 0;
-                list1.Add(int.Parse(btn.Text));
-                foreach (int n in list1)
-                {
-                    v1 = v1 * 10 + n;
-                }
-                mDisplay.Text = $"{v1:.###}";
+                s1 += btn.Text;
+                v1 = double.Parse(s1);
+                ShowValus("mode1");
             }
-            else 
+            else // has pushed +-*/
             {
-                if (list2.Count > units || (list2.Count == 0 && btn.Text == "0" && ope!="X")) return;
+                if (s2.Length > digits || (s2 == "0" && btn.Text == "0" && ope!="X")) return;
 
                 v2 = 0;
                 if (btn.Text == "0")
                 {
-                    mDisplay.Text = $"{v2}";
-                    sDisplay.Text = $"{v1}  {ope}";
+                    ShowValus("mode2");
                 }
                 else
                 {
-                    list2.Add(int.Parse(btn.Text));
-                    foreach (int n in list2)
-                    {
-                        v2 = v2 * 10 + n;
-                    }
-                    mDisplay.Text = $"{v2:.###}";
-                    sDisplay.Text = $"{v1}  {ope}";
+                    s2 += btn.Text;
+                    v2 = double.Parse(s2);
+                    ShowValus("mode2");
                 }
-                
             }
         }
+
         public void btnOpe(object sender, EventArgs e)
         {
+            if (isOperated == true) Calculate();
             Button btn = (Button)sender;
+            //if (isOperated == true && ope==btn.Text) Calculate();
             isOperated = true;
             ope= btn.Text;
             sDisplay.Text = $"{v1}  {ope}";
         }
-        public void btnEqu(object sender, EventArgs e)
+        public void Calculate()
         {
-            if (!isOperated || (v2==0 && ope!="X")) return;
+            if (!isOperated || (v2 == 0 && ope != "X")) return;
             result = 0;
 
-            if (ope == "+")
+            if (ope == "+")  //+ ============================================
             {
-                if (v1 >= double.MaxValue/2 || v2 >= double.MaxValue/2) {
-                    allClear();
+                if (v1 >= double.MaxValue / 2 || v2 >= double.MaxValue / 2)
+                {
+                    ClearAll();
                     mDisplay.Text = "The value is Over range";
                 }
                 result = v1 + v2;
             }
-            else if (ope == "-")
+            else if (ope == "-") //- ============================================
             {
                 result = v1 - v2;
             }
-            else if (ope == "X")
+            else if (ope == "X") //X ============================================
             {
-                if (v1 >= Math.Pow(double.MaxValue, 0.5) || v2 >= Math.Pow(double.MaxValue, 0.5)) {
-                    allClear();
+                if (v1 >= Math.Pow(double.MaxValue, 0.5) || v2 >= Math.Pow(double.MaxValue, 0.5))
+                {
+                    ClearAll();
                     mDisplay.Text = "The value is Over range";
                 }
                 result = v1 * v2;
             }
-            else 
+            else // divid ============================================
             {
-                result = Math.Round(v1 / v2,4);
+                result = Math.Round(v1 / v2, 4);
             }
-            allClear();
+            ClearAll();
             v1 = result;
+            s1 = v1.ToString();
             if (Math.Abs(v1) > Math.Pow(10, 8)) mDisplay.FontSize = 40;
-            else if (Math.Abs(v1) > Math.Pow(10, 99)) mDisplay.FontSize = 30;
+            else if (Math.Abs(v1) > Math.Pow(10, 99)) mDisplay.FontSize = 25;
             mDisplay.Text = $" {v1}";
         }
 
-        public void btnCle(object sender, EventArgs e) => allClear();
 
-        public void allClear()
+        public void btnEqu(object sender, EventArgs e) => Calculate();
+
+        public void btnBac(object sender, EventArgs e)
+        {
+            double temp1 = Math.Abs(v1);
+            double temp2 = Math.Abs(v2);
+
+            if (!isOperated)
+            {
+                if (temp1 > Math.Pow(10, digits)) return;
+                if ((temp1 > 0 && temp1 <1 ) || s1.Length == 1 || (s1.Length == 2 && s1.Contains("-")))
+                {
+                    s1 = "0";
+                    v1 = 0;
+                }
+                else
+                {
+                    string temp = s1.Remove(s1.Length - 1);
+                    s1 = temp;
+                    v1 = double.Parse(s1);
+                }
+                ShowValus("mode1");
+            }
+            else
+            {
+                if (temp2 > Math.Pow(10, digits)) return;
+                if ((temp1 > 0 && temp1 < 1) || s2.Length == 1 || (s1.Length == 2 && s1.Contains("-")))
+                {
+                    s2 = "0";
+                    v2 = 0;
+                }
+                else
+                {
+                    string temp = s2.Remove(s2.Length - 1);
+                    s2 = temp;
+                    v2 = double.Parse(s2);
+                }
+                ShowValus("mode2");
+            }
+        }
+        
+        public void ShowValus(string mode)
+        {
+            if (mode == "mode1")
+            {
+                mDisplay.Text = s1 = $"{v1:0.###}";
+            }
+            else if (mode == "mode2")
+            {
+                mDisplay.Text = s2 = $"{v2}";
+                sDisplay.Text = $"{v1}  {ope}";
+            }
+        }
+
+        public void btnCle(object sender, EventArgs e) => ClearAll();
+
+        public void ClearAll()
         {
             v1 = v2 = 0;
             ope = "";
             isOperated = false;
-            list1.Clear();
-            list2.Clear();
+            s1= "0";
+            s2 = "";
             sDisplay.Text = "";
             mDisplay.Text = "0";
             mDisplay.FontSize = 50;
