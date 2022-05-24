@@ -22,9 +22,12 @@ namespace priCalculatorApp
         bool isOperated = false;
         string ope = "";
         const int digits= 11;
+        bool cantBack = false;
+        bool isCalOver = false;
 
         public void btnNum(object sender, EventArgs e)
         {
+            if(isCalOver) ClearAll();
             Button btn = (Button)sender;
             if (!isOperated) 
             {
@@ -60,6 +63,7 @@ namespace priCalculatorApp
             isOperated = true;
             ope= btn.Text;
             sDisplay.Text = $"{v1}  {ope}";
+            cantBack = true;
         }
         public void Calculate()
         {
@@ -100,11 +104,16 @@ namespace priCalculatorApp
             mDisplay.Text = $" {v1}";
         }
 
-
-        public void btnEqu(object sender, EventArgs e) => Calculate();
+        public void btnEqu(object sender, EventArgs e)
+        {
+            Calculate();
+            isCalOver = true;
+        }
 
         public void btnBac(object sender, EventArgs e)
         {
+            if (cantBack) return;
+
             double temp1 = Math.Abs(v1);
             double temp2 = Math.Abs(v2);
 
@@ -144,6 +153,7 @@ namespace priCalculatorApp
         
         public void ShowValus(string mode)
         {
+            cantBack = false;
             if (mode == "mode1")
             {
                 mDisplay.Text = s1 = $"{v1:0.###}";
@@ -167,6 +177,7 @@ namespace priCalculatorApp
             sDisplay.Text = "";
             mDisplay.Text = "0";
             mDisplay.FontSize = 50;
+            isCalOver = false;
         }
     }
 }
